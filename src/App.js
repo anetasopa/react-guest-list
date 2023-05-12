@@ -121,7 +121,6 @@ export default function App() {
               <label htmlFor="firstName">First name</label>
               <input
                 id="firstName"
-                name="firstName"
                 value={firstName}
                 onChange={(event) => setFirstName(event.currentTarget.value)}
               />
@@ -129,7 +128,6 @@ export default function App() {
               <label htmlFor="lastName">Last name</label>
               <input
                 id="lastName"
-                name="lastName"
                 value={lastName}
                 onChange={(event) => setLastName(event.currentTarget.value)}
               />
