@@ -118,7 +118,7 @@ export default function App() {
                 event.preventDefault();
               }}
             >
-              <label htmlFor="firstName">First name </label>
+              <label htmlFor="firstName">First name</label>
               <input
                 id="firstName"
                 name="firstName"
@@ -126,7 +126,7 @@ export default function App() {
                 onChange={(event) => setFirstName(event.currentTarget.value)}
               />
               <br />
-              <label htmlFor="lastName">Last name </label>
+              <label htmlFor="lastName">Last name</label>
               <input
                 id="lastName"
                 name="lastName"
