@@ -19,13 +19,14 @@ export default function App() {
       const response = await fetch(`${baseUrl}/guests/`);
       const guest = await response.json();
       console.log({ guest });
-
       setGuests(guest);
       setIsLoading(false);
     }
-    fetchQuests()
-      .then()
-      .catch((error) => console.log(error));
+    setTimeout(() => {
+      fetchQuests()
+        .then()
+        .catch((error) => console.log(error));
+    }, 5000);
   }, [guests]);
 
   // add guest
