@@ -116,12 +116,21 @@ export default function App() {
 
           <br />
           <label htmlFor="lastName">Last name</label>
-          <input
-            disabled={isLoading}
-            id="lastName"
-            value={lastName}
-            onChange={(event) => setLastName(event.currentTarget.value)}
-          />
+          {isLoading ? (
+            <input
+              disabled
+              id="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.currentTarget.value)}
+            />
+          ) : (
+            <input
+              id="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.currentTarget.value)}
+            />
+          )}
+
           <br />
           <button onClick={() => addGuest()}>Add guest</button>
         </form>
