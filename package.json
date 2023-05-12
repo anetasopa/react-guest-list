@@ -1,6 +1,7 @@
 {
   "name": "react-guest-list",
   "version": "0.1.0",
+  "main": "src/App.js",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
