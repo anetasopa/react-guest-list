@@ -37,6 +37,10 @@ export default function App() {
     fetchQuests().catch((error) => console.log(error));
   }, []);
 
+  useEffect(() => {
+    setIsLoading(false);
+  }, [guests]);
+
   // add guest
   const addGuest = async () => {
     await fetch(`${baseUrl}/guests`, {
