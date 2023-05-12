@@ -11,6 +11,17 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  // const [guestFilter, setGuestFilter] = useState(null);
+
+  // const filteredGuests = guests;
+  // console.log({ filteredGuests });
+
+  // if (guestFilter) {
+  //   const fn = (o) => o.name.includes(nameFilter);
+
+  //   filteredGuests = filteredGuests.filter(fn);
+  //   console.log({ filteredFiltered: filtered });
+  // }
 
   // trigger an action on first render
   // get data
@@ -26,7 +37,7 @@ export default function App() {
       fetchQuests()
         .then()
         .catch((error) => console.log(error));
-    }, 5000);
+    }, 1000);
   }, [guests]);
 
   // add guest
@@ -92,17 +103,9 @@ export default function App() {
       });
   };
 
-  useEffect(() => {
-    if (guests.length > 0) {
-      setIsLoading(false);
-    }
-  }),
-    [guests];
-
   return (
     <>
       <img className={styles.img} src={image} alt="img" />
-
       <div className={styles.container}>
         <h1>Guest List</h1>
         {isLoading ? (
@@ -136,8 +139,8 @@ export default function App() {
             <ul>
               {guests.map((guest) => (
                 // eslint-disable-next-line react/jsx-key
-                <div>
-                  <li key={guest.id} data-test-id="guest">
+                <div data-test-id="guest">
+                  <li key={`user-${guest.id}`}>
                     <FontAwesomeIcon
                       className={styles.icon}
                       icon={faLeaf}
