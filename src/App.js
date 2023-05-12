@@ -23,6 +23,10 @@ export default function App() {
   //   console.log({ filteredFiltered: filtered });
   // }
 
+  useEffect(() => {
+    setIsLoading(false);
+  }, [guests]);
+
   // trigger an action on first render
   // get data
   useEffect(() => {
@@ -32,14 +36,9 @@ export default function App() {
       const guest = await response.json();
       console.log({ guest });
       setGuests(guest);
-      setIsLoading(false);
     }
     fetchQuests().catch((error) => console.log(error));
   }, []);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, [guests]);
 
   // add guest
   const addGuest = async () => {
