@@ -23,6 +23,8 @@ export default function App() {
   //   console.log({ filteredFiltered: filtered });
   // }
 
+  useEffect(() => console.log('debug ' + isLoading), [isLoading]);
+
   useEffect(() => {
     setIsLoading(false);
   }, [guests]);
@@ -32,6 +34,7 @@ export default function App() {
   useEffect(() => {
     async function fetchQuests() {
       setIsLoading(true);
+
       const response = await fetch(`${baseUrl}/guests/`);
       const guest = await response.json();
 
@@ -96,12 +99,21 @@ export default function App() {
           }}
         >
           <label htmlFor="firstName">First name</label>
-          <input
-            disabled={isLoading}
-            id="firstName"
-            value={firstName}
-            onChange={(event) => setFirstName(event.currentTarget.value)}
-          />
+          {isLoading ? (
+            <input
+              id="firstName"
+              disabled
+              value={firstName}
+              onChange={(event) => setFirstName(event.currentTarget.value)}
+            />
+          ) : (
+            <input
+              id="firstName"
+              value={firstName}
+              onChange={(event) => setFirstName(event.currentTarget.value)}
+            />
+          )}
+
           <br />
           <label htmlFor="lastName">Last name</label>
           <input
