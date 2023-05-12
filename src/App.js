@@ -34,8 +34,8 @@ export default function App() {
       setIsLoading(true);
       const response = await fetch(`${baseUrl}/guests/`);
       const guest = await response.json();
-      console.log({ guest });
-      setGuests(guest);
+
+      setGuests([...guest]);
     }
     fetchQuests().catch((error) => console.log(error));
   }, []);
