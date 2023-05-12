@@ -42,7 +42,7 @@ export default function App() {
 
   // add guest
   const addGuest = async () => {
-    fetch(`${baseUrl}/guests`, {
+    await fetch(`${baseUrl}/guests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export default function App() {
 
   // delete guest
   const deleteGuest = async (guestId) => {
-    fetch(`${baseUrl}/guests/${guestId}`, {
+    await fetch(`${baseUrl}/guests/${guestId}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())
@@ -86,7 +86,7 @@ export default function App() {
       attending: !guestToUpdate.attending,
     };
 
-    return fetch(`${baseUrl}/guests/${guestId}`, {
+    return await fetch(`${baseUrl}/guests/${guestId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -138,9 +138,8 @@ export default function App() {
             </form>
             <ul>
               {guests.map((guest) => (
-                // eslint-disable-next-line react/jsx-key
-                <div data-test-id="guest">
-                  <li key={`user-${guest.id}`}>
+                <div key={`user-${guest.id}`} data-test-id="guest">
+                  <li>
                     <FontAwesomeIcon
                       className={styles.icon}
                       icon={faLeaf}
