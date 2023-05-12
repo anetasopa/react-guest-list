@@ -27,18 +27,15 @@ export default function App() {
   // get data
   useEffect(() => {
     async function fetchQuests() {
+      setIsLoading(true);
       const response = await fetch(`${baseUrl}/guests/`);
       const guest = await response.json();
       console.log({ guest });
       setGuests(guest);
       setIsLoading(false);
     }
-    setTimeout(() => {
-      fetchQuests()
-        .then()
-        .catch((error) => console.log(error));
-    }, 1000);
-  }, [guests]);
+    fetchQuests().catch((error) => console.log(error));
+  }, []);
 
   // add guest
   const addGuest = async () => {
@@ -108,63 +105,60 @@ export default function App() {
       <img className={styles.img} src={image} alt="img" />
       <div className={styles.container}>
         <h1>Guest List</h1>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            {JSON.stringify(toggleAttending)}
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-              }}
-            >
-              <label htmlFor="firstName">First name</label>
-              <input
-                id="firstName"
-                value={firstName}
-                onChange={(event) => setFirstName(event.currentTarget.value)}
-              />
-              <br />
-              <label htmlFor="lastName">Last name</label>
-              <input
-                id="lastName"
-                value={lastName}
-                onChange={(event) => setLastName(event.currentTarget.value)}
-              />
-              <br />
-              <button onClick={() => addGuest()}>Add guest</button>
-            </form>
-            <ul>
-              {guests.map((guest) => (
-                <div key={`user-${guest.id}`} data-test-id="guest">
-                  <li>
-                    <FontAwesomeIcon
-                      className={styles.icon}
-                      icon={faLeaf}
-                      style={{ color: '#ffffff' }}
-                    />
-                    <label htmlFor={`attending-${guest.id}`}>Attending:</label>
-                    <input
-                      type="checkbox"
-                      id={`attending-${guest.id}`}
-                      aria-label={`${guest.firstName} ${guest.lastName} attending status`}
-                      checked={guest.attending}
-                      onChange={() => toggleAttending(guest.id)}
-                    />
-                    <span>{`${guest.firstName} ${guest.lastName}`}</span>
-                  </li>
-                  <button
-                    className={styles.buttonRemove}
-                    aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
-                    onClick={() => deleteGuest(guest.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </ul>
-          </>
-        )}
+        {isLoading ? <div>Loading...</div> : ''}
+        {JSON.stringify(toggleAttending)}
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
+          <label htmlFor="firstName">First name</label>
+          <input
+            disabled={isLoading}
+            id="firstName"
+            value={firstName}
+            onChange={(event) => setFirstName(event.currentTarget.value)}
+          />
+          <br />
+          <label htmlFor="lastName">Last name</label>
+          <input
+            disabled={isLoading}
+            id="lastName"
+            value={lastName}
+            onChange={(event) => setLastName(event.currentTarget.value)}
+          />
+          <br />
+          <button onClick={() => addGuest()}>Add guest</button>
+        </form>
+        <ul>
+          {guests.map((guest) => (
+            <div key={`user-${guest.id}`} data-test-id="guest">
+              <li>
+                <FontAwesomeIcon
+                  className={styles.icon}
+                  icon={faLeaf}
+                  style={{ color: '#ffffff' }}
+                />
+                <label htmlFor={`attending-${guest.id}`}>Attending:</label>
+                <input
+                  type="checkbox"
+                  id={`attending-${guest.id}`}
+                  aria-label={`${guest.firstName} ${guest.lastName} attending status`}
+                  checked={guest.attending}
+                  onChange={() => toggleAttending(guest.id)}
+                />
+                <span>{`${guest.firstName} ${guest.lastName}`}</span>
+              </li>
+              <button
+                className={styles.buttonRemove}
+                aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
+                onClick={() => deleteGuest(guest.id)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </ul>
       </div>
     </>
   );
