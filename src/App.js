@@ -7,15 +7,15 @@ const baseUrl = 'http://localhost:4000';
 
 export default function App() {
   const [guests, setGuests] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
   //useEffect(() => console.log('debug ' + isLoading), [isLoading]);
 
-  // useEffect(() => {
-  //   setIsLoading(false);
-  // }, [guests]);
+  useEffect(() => {
+    setIsLoading(false);
+  }, [guests]);
 
   // trigger an action on first render
   // get data
@@ -28,7 +28,7 @@ export default function App() {
       //await new Promise((resolve) => setTimeout(resolve, 1000));
 
       setGuests([...guest]);
-      setIsLoading(false);
+      //setIsLoading(false);
     }
     fetchQuests().catch((error) => console.log(error));
   }, []);
@@ -48,6 +48,8 @@ export default function App() {
     const createdGuest = await response.json();
     const newGuestList = [...guests, createdGuest];
     setGuests(newGuestList);
+    setFirstName('');
+    setLastName('');
   };
 
   // delete guest
@@ -110,11 +112,7 @@ export default function App() {
       <div className={styles.container}>
         <h1>Guest List</h1>
         {JSON.stringify(toggleAttending)}
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-          }}
-        >
+        <form onSubmit={(event) => event.preventDefault()}>
           <label htmlFor="firstName">First name</label>
           <input
             id="firstName"
