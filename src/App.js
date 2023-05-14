@@ -11,17 +11,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  // const [guestFilter, setGuestFilter] = useState(null);
-
-  // const filteredGuests = guests;
-  // console.log({ filteredGuests });
-
-  // if (guestFilter) {
-  //   const fn = (o) => o.name.includes(nameFilter);
-
-  //   filteredGuests = filteredGuests.filter(fn);
-  //   console.log({ filteredFiltered: filtered });
-  // }
 
   useEffect(() => console.log('debug ' + isLoading), [isLoading]);
 
@@ -113,7 +102,6 @@ export default function App() {
               onChange={(event) => setFirstName(event.currentTarget.value)}
             />
           )}
-
           <br />
           <label htmlFor="lastName">Last name</label>
           {isLoading ? (
@@ -130,7 +118,6 @@ export default function App() {
               onChange={(event) => setLastName(event.currentTarget.value)}
             />
           )}
-
           <br />
           <button onClick={() => addGuest()}>Add guest</button>
         </form>
@@ -150,7 +137,6 @@ export default function App() {
               onChange={() => toggleAttending(guest.id)}
             />
             <span>{`${guest.firstName} ${guest.lastName}`}</span>
-
             <button
               className={styles.buttonRemove}
               aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
