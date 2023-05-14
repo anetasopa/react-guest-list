@@ -6,7 +6,7 @@ body {
   margin: 0;
   width: 100vh;
   height: 100vh;
-  font-family: Pacifico, sans-serif;
+  /* font-family: Pacifico, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
