@@ -2,14 +2,20 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color: #d96690;
+  --color-span: 730202;
+  --font-size-b: 42px;
+  --font-size-m: 22px;
+  --font-size-s: 14px;
+}
+
 body {
   margin: 0;
-  width: 100vh;
-  height: 100vh;
-  /* font-family: Pacifico, sans-serif; */
+  font-family: Pacifico, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: white;
+  background-color: #f2f2f2;
 }
 
 span {

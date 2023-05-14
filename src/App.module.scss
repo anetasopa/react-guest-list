@@ -1,17 +1,84 @@
-.container {
-  padding-top: 1px;
-  background-color: grey;
+.containerForm {
   padding: 50px;
   color: white;
+  width: 60%;
+  margin: auto;
+  top: 50% !important;
+  background-color: tran;
+  padding-top: 200px;
+
+  h1 {
+    color: var(--color);
+    font-size: var(--font-size-b);
+    font-weight: 900;
+  }
+
+  label {
+    color: var(--color);
+    font-size: var(--font-size-m);
+  }
+
+  button {
+    background: linear-gradient(to bottom right, #d96690, #f2d3d0);
+    border: 0;
+    border-radius: 7px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 20px 0 20px 0;
+    white-space: nowrap;
+  }
+
+  button:not([disabled]):focus {
+    box-shadow: -0.125rem -0.125rem 0.5rem #d96690;
+  }
+
+  button:not([disabled]):hover {
+    box-shadow: -0.125rem -0.125rem 0.5rem #d96690;
+  }
+
+  span {
+    color: var(--color-span);
+    padding-right: 50px;
+  }
 }
 
-// .img {
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-//   object-fit: cover;
-//   z-index: -1;
-// }
+@media (max-width: 480px) {
+  .containerForm {
+    padding: 20px;
+    padding-top: 50px;
+
+    h1 {
+      font-size: var(--font-size-m);
+    }
+
+    label {
+      color: var(--color);
+      font-size: var(--font-size-s);
+    }
+  }
+}
+
+.img {
+  position: absolute;
+  object-fit: cover;
+  z-index: -1;
+  display: block;
+  width: 100%;
+}
 
 ul {
   list-style-type: none;
@@ -19,8 +86,25 @@ ul {
 
 .icon {
   margin-right: 30px;
+  margin-left: 20px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.close:hover {
+  cursor: pointer;
 }
 
 .buttonRemove {
   margin-left: 50px;
+}
+
+.attendingLabel {
+  display: none;
+}
+
+.attendingCheckbox {
+  // visibility: hidden;
 }
