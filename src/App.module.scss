@@ -4,6 +4,12 @@
   right: 20%;
 }
 
+@media (max-width: 480px) {
+  .img {
+    width: 200px;
+  }
+}
+
 .containerForm {
   padding: 50px;
   width: 60%;
@@ -89,7 +95,7 @@
   }
 
   button {
-    background: linear-gradient(to bottom right, #d96690, #f2d3d0);
+    background: linear-gradient(to bottom right, #00dfc0, #ff908f);
     border: 0;
     border-radius: 7px;
     color: #ffffff;
@@ -113,11 +119,11 @@
   }
 
   button:not([disabled]):focus {
-    box-shadow: -0.125rem -0.125rem 0.5rem #d96690;
+    box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
   }
 
   button:not([disabled]):hover {
-    box-shadow: -0.125rem -0.125rem 0.5rem #d96690;
+    box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
   }
 
   span {
@@ -126,29 +132,13 @@
   }
 }
 
-// @media (max-width: 480px) {
-//   .containerForm {
-//     padding: 20px;
-//     padding-top: 50px;
-
-//     h1 {
-//       font-size: var(--font-size-m);
-//     }
-
-//     label {
-//       color: var(--color);
-//       font-size: var(--font-size-s);
-//     }
-//   }
-// }
-
-// .img {
-//   position: absolute;
-//   object-fit: cover;
-//   z-index: -1;
-//   display: block;
-//   width: 100%;
-// }
+@media (max-width: 480px) {
+  .containerForm {
+    width: 100%;
+    padding-top: 160px;
+    box-shadow: none;
+  }
+}
 
 .checkboxWrapper,
 .checkbox {

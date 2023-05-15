@@ -110,7 +110,7 @@ export default function App() {
         <span>{`${guest.firstName} ${guest.lastName}`}</span>
         <FontAwesomeIcon
           className={styles.close}
-          style={{ color: '#D96690' }}
+          style={{ color: '#00dfc0' }}
           icon={faXmark}
           aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
           onClick={() => deleteGuest(guest.id)}
