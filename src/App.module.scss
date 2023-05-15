@@ -6,7 +6,6 @@
 
 .containerForm {
   padding: 50px;
-  color: white;
   width: 60%;
   height: auto;
   border-radius: 10px;
@@ -22,12 +21,10 @@
   }
 
   .formField {
-    font-family: inherit;
     width: 100%;
     border: 0;
     border-bottom: 2px solid #9b9b9b;
     outline: 0;
-    font-size: 1.3rem;
     color: #9b9b9b;
     font-family: var(--font-family);
     padding: 7px 0;
@@ -185,7 +182,6 @@
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
