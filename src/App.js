@@ -13,6 +13,69 @@ export default function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
+  const [isAttending, setIsAttending] = useState('please select');
+
+  //const chooseAttending = async () => {
+  //  const response = await fetch(`${baseUrl}/guests/`);
+  //  const filterFrom = await response.json();
+
+  //   if (isAttending === 'attending') {
+  //     const filteredListAttending = filterFrom.filter(
+  //       (guest) => guest.attending === true,
+  //     );
+  //     console.log({ filteredListAttending });
+  //     setGuests(filteredListAttending);
+  //   } else if (isAttending === 'noAttending') {
+  //     const filteredListNoAttending = filterFrom.filter(
+  //       (guest) => guest.attending === false,
+  //     );
+  //     console.log({ filteredListNoAttending });
+  //     setGuests(filteredListNoAttending);
+  //   } else {
+  //     setGuests(filterFrom);
+  //   }
+  // };
+
+  useEffect(() => {
+    async function fetchQuests() {
+      setIsLoading(true);
+
+      const response = await fetch(`${baseUrl}/guests/`);
+      const filterFrom = await response.json();
+
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      if (isAttending === 'attending') {
+        const filteredListAttending = filterFrom.filter(
+          (guest) => guest.attending === true,
+        );
+        console.log({ filteredListAttending });
+        setGuests(filteredListAttending);
+      } else if (isAttending === 'noAttending') {
+        const filteredListNoAttending = filterFrom.filter(
+          (guest) => guest.attending === false,
+        );
+        console.log({ filteredListNoAttending });
+        setGuests(filteredListNoAttending);
+      } else {
+        setGuests(filterFrom);
+      }
+    }
+    fetchQuests().catch((error) => console.log(error));
+  }, [isAttending]);
+
+  // function chooseIsAttending() {
+  //   const filtered = guests.filter((guest) => guest.attending === true);
+  //   setIsAttending(filtered);
+  // }
+
+  // const filteredAttending = guests.filter((a) => {
+  //   return a.attending === true;
+  // });
+
+  // console.log({ guests });
+  // console.log({ filteredAttending });
+
   useEffect(() => {
     setIsLoading(false);
   }, [guests]);
@@ -45,8 +108,14 @@ export default function App() {
         lastName: lastName,
       }),
     });
+
+    if (firstName === '' || lastName === '') {
+      return;
+    }
+
     const createdGuest = await response.json();
     const newGuestList = [...guests, createdGuest];
+
     setGuests(newGuestList);
     setFirstName('');
     setLastName('');
@@ -92,23 +161,7 @@ export default function App() {
             <span className={styles.checkboxIcon} />
           </label>
         </div>
-
-        {/* <label
-          className={styles.attendingLabel}
-          htmlFor={`attending-${guest.id}`}
-        >
-          Attending:
-        </label>
-        <input
-          className={styles.attendingCheckbox}
-          type="checkbox"
-          id={`attending-${guest.id}`}
-          aria-label={`${guest.firstName} ${guest.lastName} attending status`}
-          checked={guest.attending}
-          onChange={() => toggleAttending(guest.id)}
-        /> */}
         <span>{`${guest.firstName} ${guest.lastName}`}</span>
-
         <button
           className={styles.buttonRemove}
           aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
@@ -167,6 +220,24 @@ export default function App() {
           >
             Add guest
           </button>
+
+          <div>
+            <span>Filter guests: </span>
+            <select
+              className={styles.select}
+              defaultValue={isAttending}
+              onChange={(event) => {
+                setIsAttending(event.currentTarget.value);
+                // await chooseAttending().catch((error) => console.log(error));
+              }}
+              x
+            >
+              <option value="please select">Please select</option>
+              <option value="attending">Attending</option>
+              <option value="noAttending">No attending</option>
+              <option value="remove">Remove</option>
+            </select>
+          </div>
         </form>
         {isLoading ? <div>Loading...</div> : renderList()}
       </div>
