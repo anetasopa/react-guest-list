@@ -64,18 +64,6 @@ export default function App() {
     fetchQuests().catch((error) => console.log(error));
   }, [isAttending]);
 
-  // function chooseIsAttending() {
-  //   const filtered = guests.filter((guest) => guest.attending === true);
-  //   setIsAttending(filtered);
-  // }
-
-  // const filteredAttending = guests.filter((a) => {
-  //   return a.attending === true;
-  // });
-
-  // console.log({ guests });
-  // console.log({ filteredAttending });
-
   useEffect(() => {
     setIsLoading(false);
   }, [guests]);
@@ -131,6 +119,14 @@ export default function App() {
     setGuests(newGuestList);
   };
 
+  // delete all guest
+  const removeAllGuest = async () => {
+    setIsLoading(true);
+    for (const guest of guests) {
+      await deleteGuest(guest.id);
+    }
+    setGuests([]);
+  };
   // update attending
   const toggleAttending = async (para) => {
     const index = guests.findIndex((guest) => guest.id === para);
@@ -214,11 +210,18 @@ export default function App() {
             </label>
           </div>
           <button
-            className={styles.button}
+            className={`${styles.button} ${styles.marginRight}`}
             onClick={() => addGuest()}
             disabled={isLoading}
           >
             Add guest
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => removeAllGuest()}
+            disabled={isLoading}
+          >
+            Remove all
           </button>
 
           <div>
