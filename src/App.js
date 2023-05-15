@@ -139,8 +139,6 @@ export default function App() {
               type="input"
               className={styles.formField}
               placeholder="Name"
-              name="name"
-              required
               id="firstName"
               disabled={isLoading}
               value={firstName}
@@ -155,8 +153,6 @@ export default function App() {
               type="input"
               className={styles.formField}
               placeholder="Name"
-              name="name"
-              required
               disabled={isLoading}
               id="lastName"
               value={lastName}
@@ -166,7 +162,6 @@ export default function App() {
               Last name
             </label>
           </div>
-
           <button onClick={() => addGuest()} disabled={isLoading}>
             Add guest
           </button>
