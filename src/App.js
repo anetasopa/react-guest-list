@@ -2,6 +2,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
+import Form from './component/form/Form';
 import image from './images/image3.png';
 
 const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
@@ -157,67 +158,17 @@ export default function App() {
       <div className={styles.containerForm}>
         <h1>Guest List</h1>
         {JSON.stringify(toggleAttending)}
-        <form onSubmit={(event) => event.preventDefault()}>
-          <div className={styles.formGroup}>
-            <input
-              type="input"
-              className={styles.formField}
-              placeholder="Name"
-              id="firstName"
-              disabled={isLoading}
-              value={firstName}
-              onChange={(event) => setFirstName(event.currentTarget.value)}
-            />
-            <label htmlFor="firstName" className={styles.formLabel}>
-              First name
-            </label>
-          </div>
-          <div className={styles.formGroup}>
-            <input
-              type="input"
-              className={styles.formField}
-              placeholder="Name"
-              disabled={isLoading}
-              id="lastName"
-              value={lastName}
-              onChange={(event) => setLastName(event.currentTarget.value)}
-            />
-            <label htmlFor="lastName" className={styles.formLabel}>
-              Last name
-            </label>
-          </div>
-          <button
-            className={`${styles.button} ${styles.marginRight}`}
-            onClick={() => addGuest()}
-            disabled={isLoading}
-          >
-            Add guest
-          </button>
-          <button
-            className={styles.button}
-            onClick={() => removeAllGuest()}
-            disabled={isLoading}
-          >
-            Remove all
-          </button>
-          <div>
-            <span>Filter guests: </span>
-            <select
-              className={styles.select}
-              defaultValue={isAttending}
-              onChange={(event) => {
-                setIsAttending(event.currentTarget.value);
-                // await chooseAttending().catch((error) => console.log(error));
-              }}
-              x
-            >
-              <option value="please select">Please select</option>
-              <option value="attending">Attending</option>
-              <option value="no attending">No attending</option>
-              <option value="show all">Show all</option>
-            </select>
-          </div>
-        </form>
+        <Form
+          isLoading={isLoading}
+          setFirstName={setFirstName}
+          firstName={firstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          addGuest={addGuest}
+          removeAllGuest={removeAllGuest}
+          isAttending={isAttending}
+          setIsAttending={setIsAttending}
+        />
         {isLoading ? <div>Loading...</div> : renderList()}
       </div>
     </>

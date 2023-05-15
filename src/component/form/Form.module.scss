@@ -1,0 +1,120 @@
+.formGroup {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.formField {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  color: #9b9b9b;
+  font-family: var(--font-family);
+  padding: 7px 0;
+  font-size: var(--font-size-s);
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .formLabel {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.formLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.formField:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: var(--color);
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #00dfc0, #ff908f);
+  border-image-slice: 1;
+}
+/* reset input */
+// .formField {
+//   &:required,
+//   &:invalid {
+//     box-shadow: none;
+//   }
+// }
+
+h1 {
+  color: var(--color);
+  font-size: var(--font-size-b);
+  font-weight: 900;
+}
+
+label {
+  color: var(--color);
+  font-size: var(--font-size-m);
+}
+
+.button {
+  background: linear-gradient(to bottom right, #00dfc0, #ff908f);
+  border: 0;
+  border-radius: 7px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 50px 0 20px 0;
+  white-space: nowrap;
+}
+
+.button:not([disabled]):focus {
+  box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
+}
+
+.button:not([disabled]):hover {
+  box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
+}
+
+.marginRight {
+  margin-right: 30px;
+}
+
+@media (max-width: 480px) {
+  .formGroup {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+}
