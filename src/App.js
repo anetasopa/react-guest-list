@@ -5,7 +5,7 @@ import styles from './App.module.scss';
 import image from './images/image3.png';
 
 // const baseUrl = 'http://localhost:4000';
-const baseUrl = 'http://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
+const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
 
 export default function App() {
   const [guests, setGuests] = useState([]);
