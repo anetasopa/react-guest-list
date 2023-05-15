@@ -176,7 +176,7 @@
 }
 
 .checkboxWrapper .checkboxIcon:before {
-  font-family: 'icons-27';
+  font-family: var(--font-family-checkbox);
   speak: none;
   font-style: normal;
   font-weight: normal;
