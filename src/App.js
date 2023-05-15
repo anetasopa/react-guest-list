@@ -99,9 +99,18 @@ export default function App() {
   // delete all guest
   const removeAllGuest = async () => {
     setIsLoading(true);
-    for (const guest of guests) {
-      await deleteGuest(guest.id);
+
+    async function getAllGuests() {
+      setIsLoading(true);
+
+      const response = await fetch(`${baseUrl}/guests/`);
+      const allGuests = await response.json();
+      for (const guest of allGuests) {
+        await deleteGuest(guest.id);
+      }
     }
+    getAllGuests().catch((error) => console.log(error));
+
     setGuests([]);
   };
 
