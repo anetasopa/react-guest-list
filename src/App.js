@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import image from './images/image3.png';
 
-// const baseUrl = 'http://localhost:4000';
 const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
 
 export default function App() {
@@ -15,35 +14,12 @@ export default function App() {
 
   const [isAttending, setIsAttending] = useState('please select');
 
-  //const chooseAttending = async () => {
-  //  const response = await fetch(`${baseUrl}/guests/`);
-  //  const filterFrom = await response.json();
-
-  //   if (isAttending === 'attending') {
-  //     const filteredListAttending = filterFrom.filter(
-  //       (guest) => guest.attending === true,
-  //     );
-  //     console.log({ filteredListAttending });
-  //     setGuests(filteredListAttending);
-  //   } else if (isAttending === 'noAttending') {
-  //     const filteredListNoAttending = filterFrom.filter(
-  //       (guest) => guest.attending === false,
-  //     );
-  //     console.log({ filteredListNoAttending });
-  //     setGuests(filteredListNoAttending);
-  //   } else {
-  //     setGuests(filterFrom);
-  //   }
-  // };
-
   useEffect(() => {
     async function fetchQuests() {
       setIsLoading(true);
 
       const response = await fetch(`${baseUrl}/guests/`);
       const filterFrom = await response.json();
-
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
 
       if (isAttending === 'attending') {
         const filteredListAttending = filterFrom.filter(
@@ -127,6 +103,7 @@ export default function App() {
     }
     setGuests([]);
   };
+
   // update attending
   const toggleAttending = async (para) => {
     const index = guests.findIndex((guest) => guest.id === para);
@@ -223,7 +200,6 @@ export default function App() {
           >
             Remove all
           </button>
-
           <div>
             <span>Filter guests: </span>
             <select
