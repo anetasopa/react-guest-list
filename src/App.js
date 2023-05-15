@@ -2,7 +2,7 @@ import { faLeaf, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
-import image from './images/list.png';
+import image from './images/image3.png';
 
 // const baseUrl = 'http://localhost:4000';
 const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
@@ -81,7 +81,19 @@ export default function App() {
   const renderList = () => {
     return guests.map((guest) => (
       <div key={`user-${guest.id}`} data-test-id="guest">
-        <label
+        <div className={styles.checkboxWrapper}>
+          <label className={styles.checkbox}>
+            <input
+              type="checkbox"
+              aria-label={`${guest.firstName} ${guest.lastName} attending status`}
+              checked={guest.attending}
+              onChange={() => toggleAttending(guest.id)}
+            />
+            <span className={styles.checkboxIcon} />
+          </label>
+        </div>
+
+        {/* <label
           className={styles.attendingLabel}
           htmlFor={`attending-${guest.id}`}
         >
@@ -94,12 +106,7 @@ export default function App() {
           aria-label={`${guest.firstName} ${guest.lastName} attending status`}
           checked={guest.attending}
           onChange={() => toggleAttending(guest.id)}
-        />
-        <FontAwesomeIcon
-          className={styles.icon}
-          icon={faLeaf}
-          style={guest.attending ? { color: '#3D402C' } : { color: 'white' }}
-        />
+        /> */}
         <span>{`${guest.firstName} ${guest.lastName}`}</span>
         <FontAwesomeIcon
           className={styles.close}
@@ -127,24 +134,39 @@ export default function App() {
         <h1>Guest List</h1>
         {JSON.stringify(toggleAttending)}
         <form onSubmit={(event) => event.preventDefault()}>
-          <div className={styles.floatLabelField}>
-            <label htmlFor="firstName">First name</label>
+          <div className={styles.formGroup}>
             <input
+              type="input"
+              className={styles.formField}
+              placeholder="Name"
+              name="name"
+              required
               id="firstName"
               disabled={isLoading}
               value={firstName}
               onChange={(event) => setFirstName(event.currentTarget.value)}
             />
+            <label htmlFor="firstName" className={styles.formLabel}>
+              First name
+            </label>
           </div>
-          <br />
-          <label htmlFor="lastName">Last name</label>
-          <input
-            disabled={isLoading}
-            id="lastName"
-            value={lastName}
-            onChange={(event) => setLastName(event.currentTarget.value)}
-          />
-          <br />
+          <div className={styles.formGroup}>
+            <input
+              type="input"
+              className={styles.formField}
+              placeholder="Name"
+              name="name"
+              required
+              disabled={isLoading}
+              id="lastName"
+              value={lastName}
+              onChange={(event) => setLastName(event.currentTarget.value)}
+            />
+            <label htmlFor="lastName" className={styles.formLabel}>
+              Last name
+            </label>
+          </div>
+
           <button onClick={() => addGuest()} disabled={isLoading}>
             Add guest
           </button>

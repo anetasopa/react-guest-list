@@ -3,11 +3,13 @@
 }
 
 :root {
-  --color: #d96690;
+  --color: #00dfc0;
+  --color-pink: #ff908f;
   --color-span: 730202;
   --font-size-b: 42px;
   --font-size-m: 22px;
   --font-size-s: 14px;
+  --font-family: Poppins, sans-serif;
 }
 
 body {
@@ -15,7 +17,6 @@ body {
   font-family: Pacifico, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f2f2f2;
 }
 
 span {
