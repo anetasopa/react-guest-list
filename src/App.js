@@ -51,7 +51,7 @@ export default function App() {
         );
         console.log({ filteredListAttending });
         setGuests(filteredListAttending);
-      } else if (isAttending === 'noAttending') {
+      } else if (isAttending === 'no attending') {
         const filteredListNoAttending = filterFrom.filter(
           (guest) => guest.attending === false,
         );
@@ -234,8 +234,8 @@ export default function App() {
             >
               <option value="please select">Please select</option>
               <option value="attending">Attending</option>
-              <option value="noAttending">No attending</option>
-              <option value="remove">Remove</option>
+              <option value="no attending">No attending</option>
+              <option value="show all">Show all</option>
             </select>
           </div>
         </form>
