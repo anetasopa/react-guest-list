@@ -1,8 +1,9 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faXmark } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import Form from './component/form/Form';
+import List from './component/list/List';
 import image from './images/image3.png';
 
 const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
@@ -130,40 +131,9 @@ export default function App() {
     setGuests(newUpdatedGuest);
   };
 
-  const renderList = () => {
-    return guests.map((guest) => (
-      <div key={`user-${guest.id}`} data-test-id="guest">
-        <div className={styles.checkboxWrapper}>
-          <label className={styles.checkbox}>
-            <input
-              type="checkbox"
-              aria-label={`${guest.firstName} ${guest.lastName} attending status`}
-              checked={guest.attending}
-              onChange={() => toggleAttending(guest.id)}
-            />
-            <span className={styles.checkboxIcon} />
-          </label>
-        </div>
-        <span>{`${guest.firstName} ${guest.lastName}`}</span>
-        <button
-          className={styles.buttonRemove}
-          aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
-          onClick={() => deleteGuest(guest.id)}
-        >
-          <FontAwesomeIcon
-            className={styles.close}
-            style={{ color: '#00dfc0' }}
-            icon={faXmark}
-          />
-        </button>
-      </div>
-    ));
-  };
-
   return (
     <>
       <img className={styles.img} src={image} alt="img" />
-
       <div className={styles.containerForm}>
         <h1>Guest List</h1>
         {JSON.stringify(toggleAttending)}
@@ -178,7 +148,15 @@ export default function App() {
           isAttending={isAttending}
           setIsAttending={setIsAttending}
         />
-        {isLoading ? <div>Loading...</div> : renderList()}
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <List
+            guests={guests}
+            toggleAttending={toggleAttending}
+            deleteGuest={deleteGuest}
+          />
+        )}
       </div>
     </>
   );

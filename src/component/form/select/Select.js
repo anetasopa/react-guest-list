@@ -11,7 +11,6 @@ function Select({ isAttending, setIsAttending }) {
           setIsAttending(event.currentTarget.value);
           // await chooseAttending().catch((error) => console.log(error));
         }}
-        x
       >
         <option value="please select">Please select</option>
         <option value="attending">Attending</option>
