@@ -108,20 +108,18 @@ export default function App() {
           onChange={() => toggleAttending(guest.id)}
         /> */}
         <span>{`${guest.firstName} ${guest.lastName}`}</span>
-        <FontAwesomeIcon
-          className={styles.close}
-          style={{ color: '#00dfc0' }}
-          icon={faXmark}
-          aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
-          onClick={() => deleteGuest(guest.id)}
-        />
-        {/* <button
+
+        <button
           className={styles.buttonRemove}
           aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
           onClick={() => deleteGuest(guest.id)}
         >
-          Remove
-        </button> */}
+          <FontAwesomeIcon
+            className={styles.close}
+            style={{ color: '#00dfc0' }}
+            icon={faXmark}
+          />
+        </button>
       </div>
     ));
   };
@@ -162,7 +160,11 @@ export default function App() {
               Last name
             </label>
           </div>
-          <button onClick={() => addGuest()} disabled={isLoading}>
+          <button
+            className={styles.button}
+            onClick={() => addGuest()}
+            disabled={isLoading}
+          >
             Add guest
           </button>
         </form>

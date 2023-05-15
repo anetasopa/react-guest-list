@@ -94,7 +94,7 @@
     font-size: var(--font-size-m);
   }
 
-  button {
+  .button {
     background: linear-gradient(to bottom right, #00dfc0, #ff908f);
     border: 0;
     border-radius: 7px;
@@ -118,11 +118,11 @@
     white-space: nowrap;
   }
 
-  button:not([disabled]):focus {
+  .button:not([disabled]):focus {
     box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
   }
 
-  button:not([disabled]):hover {
+  .button:not([disabled]):hover {
     box-shadow: -0.125rem -0.125rem 0.4rem #00dfc0;
   }
 
@@ -203,5 +203,6 @@
 }
 
 .buttonRemove {
-  margin-left: 50px;
+  border: none;
+  background: transparent;
 }
