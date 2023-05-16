@@ -1,4 +1,4 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './List.module.scss';
 
@@ -24,9 +24,20 @@ function List({ guests, toggleAttending, deleteGuest }) {
         onClick={() => deleteGuest(guest.id)}
       >
         <FontAwesomeIcon
-          className={styles.close}
+          className={styles.icon}
           style={{ color: '#00dfc0' }}
           icon={faXmark}
+        />
+      </button>
+      <button
+        className={styles.buttonEdit}
+        aria-label={`Edit ${guest.firstName} ${guest.lastName}`}
+        onClick={() => deleteGuest(guest.id)}
+      >
+        <FontAwesomeIcon
+          className={styles.icon}
+          style={{ color: '#00dfc0' }}
+          icon={faPen}
         />
       </button>
     </div>

@@ -1,5 +1,3 @@
-// import { faXmark } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
 import Form from './component/form/Form';
