@@ -9,13 +9,13 @@ import image from './images/image3.png';
 const baseUrl = 'https://c2307a9a-e779-4389-8c23-48c4e3611827.id.repl.co';
 
 export default function App() {
-  const [guests, setGuests] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [guests, setGuests] = useState([]); // set guests
+  const [isLoading, setIsLoading] = useState(true); // set the page is loading
+  const [firstName, setFirstName] = useState(''); // set first name of the guest
+  const [lastName, setLastName] = useState(''); // set last name of the guest
+  const [isAttending, setIsAttending] = useState('please select'); // set is or not attending
 
-  const [isAttending, setIsAttending] = useState('please select');
-
+  // fetch for the data from API
   useEffect(() => {
     async function fetchQuests() {
       setIsLoading(true);
@@ -23,35 +23,39 @@ export default function App() {
       const response = await fetch(`${baseUrl}/guests/`);
       const filterFrom = await response.json();
 
+      // is attending
       if (isAttending === 'attending') {
         const filteredListAttending = filterFrom.filter(
           (guest) => guest.attending === true,
         );
-        console.log({ filteredListAttending });
+        // set to display only attending guests
         setGuests(filteredListAttending);
+        // is not attending
       } else if (isAttending === 'no attending') {
         const filteredListNoAttending = filterFrom.filter(
           (guest) => guest.attending === false,
         );
-        console.log({ filteredListNoAttending });
+        // set to display only no attending guests
         setGuests(filteredListNoAttending);
       } else {
+        // set to display all guests
         setGuests(filterFrom);
       }
     }
+    // error
     fetchQuests().catch((error) => console.log(error));
   }, [isAttending]);
 
+  // if got data (guests) loading is false
   useEffect(() => {
     setIsLoading(false);
   }, [guests]);
 
   // trigger an action on first render
-  // get data
   useEffect(() => {
     async function fetchQuests() {
       setIsLoading(true);
-
+      // get data
       const response = await fetch(`${baseUrl}/guests/`);
       const guest = await response.json();
 
@@ -83,6 +87,7 @@ export default function App() {
     const newGuestList = [...guests, createdGuest];
 
     setGuests(newGuestList);
+    // remove value from the inputs
     setFirstName('');
     setLastName('');
   };
@@ -93,6 +98,7 @@ export default function App() {
       method: 'DELETE',
     });
     const deletedGuest = await response.json();
+    // filter guest by id
     const newGuestList = guests.filter((guest) => guest.id !== deletedGuest.id);
     setGuests(newGuestList);
   };
