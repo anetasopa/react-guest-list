@@ -13,6 +13,12 @@ span {
   box-shadow: 0 0 0 2px var(--color);
 }
 
+@media (max-width: 480px) {
+  .select {
+    width: 100px;
+  }
+}
+
 .select:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--color);

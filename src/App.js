@@ -13,6 +13,10 @@ export default function App() {
   const [lastName, setLastName] = useState(''); // set last name of the guest
   const [isAttending, setIsAttending] = useState('please select'); // set is or not attending
 
+  const [editFirstName, setEditFirstName] = useState(firstName);
+  const [editLastName, setEditLastName] = useState(lastName);
+  const [open, setOpen] = useState(false);
+
   // fetch for the data from API
   useEffect(() => {
     async function fetchQuests() {
@@ -92,6 +96,7 @@ export default function App() {
 
   // delete guest
   const deleteGuest = async (para) => {
+    console.log(para);
     const response = await fetch(`${baseUrl}/guests/${para}`, {
       method: 'DELETE',
     });
@@ -103,7 +108,7 @@ export default function App() {
 
   // delete all guest
   const removeAllGuest = async () => {
-    setIsLoading(true);
+    await setIsLoading(true);
 
     async function getAllGuests() {
       setIsLoading(true);
@@ -119,20 +124,36 @@ export default function App() {
     setGuests([]);
   };
 
-  // update attending
-  const toggleAttending = async (para) => {
+  // update guest
+  const updatedGuest = async (para) => {
     const index = guests.findIndex((guest) => guest.id === para);
     const response = await fetch(`${baseUrl}/guests/${para}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ attending: !guests[index].attending }),
+      body: JSON.stringify({
+        attending: !guests[index].attending,
+        firstName: editFirstName,
+        lastName: editLastName,
+      }),
     });
-    const updatedGuest = await response.json();
+    const updatedGuestList = await response.json();
     const newUpdatedGuest = [...guests];
-    newUpdatedGuest[index].attending = updatedGuest.attending;
+    newUpdatedGuest[index].attending = updatedGuestList.attending;
     setGuests(newUpdatedGuest);
+  };
+
+  const saveQuest = async (first, last, id) => {
+    const edit = { first: firstName, last: lastName };
+    await updatedGuest(id, edit);
+    setOpen(false);
+  };
+
+  const editQuest = (para) => {
+    const editGuestList = guests.filter((guest) => guest.id !== para);
+    setGuests(editGuestList);
+    setOpen(true);
   };
 
   return (
@@ -140,7 +161,7 @@ export default function App() {
       <img className={styles.img} src={image} alt="img" />
       <div className={styles.containerForm}>
         <h1>Guest List</h1>
-        {JSON.stringify(toggleAttending)}
+        {JSON.stringify(updatedGuest)}
         <Form
           isLoading={isLoading}
           setFirstName={setFirstName}
@@ -157,8 +178,15 @@ export default function App() {
         ) : (
           <List
             guests={guests}
-            toggleAttending={toggleAttending}
+            updatedGuest={updatedGuest}
             deleteGuest={deleteGuest}
+            editFirstName={editFirstName}
+            setEditFirstName={setEditFirstName}
+            editLastName={editLastName}
+            setEditLastName={setEditLastName}
+            editQuest={editQuest}
+            saveQuest={saveQuest}
+            open={open}
           />
         )}
       </div>
