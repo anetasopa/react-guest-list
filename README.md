@@ -46,4 +46,4 @@ This application allows you to perform various actions on the guest list, such a
 
 To access the application, you can `clone` it and initiate it by executing the command `pnpm start`.
 
-Additionally, the code can be located at this [link](https://codesandbox.io/s/github/butterfly-123/react-guest-list).
+Additionally, the code can be located at this [link](https://codesandbox.io/p/sandbox/sharp-microservice-91yt3w).
