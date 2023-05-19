@@ -13,9 +13,9 @@ export default function App() {
   const [lastName, setLastName] = useState(''); // set last name of the guest
   const [isAttending, setIsAttending] = useState('please select'); // set is or not attending
 
-  const [editFirstName, setEditFirstName] = useState(firstName);
-  const [editLastName, setEditLastName] = useState(lastName);
-  const [open, setOpen] = useState(false);
+  // const [editFirstName, setEditFirstName] = useState(firstName);
+  // const [editLastName, setEditLastName] = useState(lastName);
+  // const [open, setOpen] = useState(false);
 
   // fetch for the data from API
   useEffect(() => {
@@ -134,8 +134,8 @@ export default function App() {
       },
       body: JSON.stringify({
         attending: !guests[index].attending,
-        firstName: editFirstName,
-        lastName: editLastName,
+        // firstName: editFirstName,
+        // lastName: editLastName,
       }),
     });
     const updatedGuestList = await response.json();
@@ -144,17 +144,17 @@ export default function App() {
     setGuests(newUpdatedGuest);
   };
 
-  const saveQuest = async (first, last, id) => {
-    const edit = { first: firstName, last: lastName };
-    await updatedGuest(id, edit);
-    setOpen(false);
-  };
+  // const saveQuest = async (first, last, id) => {
+  //   const edit = { first: firstName, last: lastName };
+  //   await updatedGuest(id, edit);
+  //   setOpen(false);
+  // };
 
-  const editQuest = (para) => {
-    const editGuestList = guests.filter((guest) => guest.id !== para);
-    setGuests(editGuestList);
-    setOpen(true);
-  };
+  // const editQuest = (para) => {
+  //   const editGuestList = guests.filter((guest) => guest.id !== para);
+  //   setGuests(editGuestList);
+  //   setOpen(true);
+  // };
 
   return (
     <>
@@ -180,13 +180,13 @@ export default function App() {
             guests={guests}
             updatedGuest={updatedGuest}
             deleteGuest={deleteGuest}
-            editFirstName={editFirstName}
-            setEditFirstName={setEditFirstName}
-            editLastName={editLastName}
-            setEditLastName={setEditLastName}
-            editQuest={editQuest}
-            saveQuest={saveQuest}
-            open={open}
+            // editFirstName={editFirstName}
+            // setEditFirstName={setEditFirstName}
+            // editLastName={editLastName}
+            // setEditLastName={setEditLastName}
+            // editQuest={editQuest}
+            // saveQuest={saveQuest}
+            // open={open}
           />
         )}
       </div>

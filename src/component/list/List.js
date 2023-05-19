@@ -6,13 +6,13 @@ function List({
   guests,
   updatedGuest,
   deleteGuest,
-  editFirstName,
-  setEditFirstName,
-  editLastName,
-  setEditLastName,
-  editQuest,
-  saveQuest,
-  open,
+  // editFirstName,
+  // setEditFirstName,
+  // editLastName,
+  // setEditLastName,
+  // editQuest,
+  // saveQuest,
+  // open,
 }) {
   return guests.map((guest) => (
     <div key={`user-${guest.id}`} data-test-id="guest">
@@ -28,7 +28,7 @@ function List({
         </label>
       </div>
       <span>{`${guest.firstName} ${guest.lastName}`}</span>
-      {open ? (
+      {/* {open ? (
         <>
           <input
             label="First name"
@@ -52,7 +52,7 @@ function List({
             />
           </button>
         </>
-      ) : null}
+      ) : null} */}
 
       <button
         className={styles.buttonRemove}
@@ -66,7 +66,7 @@ function List({
         />
       </button>
 
-      <button
+      {/* <button
         className={styles.buttonEdit}
         aria-label={`Edit ${guest.firstName} ${guest.lastName}`}
         onClick={() => editQuest(guest.id)}
@@ -76,7 +76,7 @@ function List({
           style={{ color: '#00dfc0' }}
           icon={faPen}
         />
-      </button>
+      </button> */}
     </div>
   ));
 }
